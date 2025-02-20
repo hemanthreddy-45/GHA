@@ -1,0 +1,24 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Use the environment variables (parameters) passed dynamically from the UI
+      - name: Run Script with Parameters
+        env:
+          PARAM1: ${{PARAM1}}
+          PARAM2: ${{PARAM2}}
+        run: |
+          echo "Parameter 1 value: $PARAM1"
+          echo "Parameter 2 value: $PARAM2"
+          
